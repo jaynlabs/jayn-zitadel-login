@@ -4,13 +4,27 @@ import { getInstanceHost, getPublicHost, getPublicHostWithProtocol } from "./hos
 describe("Host utility functions", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    delete process.env.ZITADEL_INSTANCE_HOST;
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
+    delete process.env.ZITADEL_INSTANCE_HOST;
   });
 
   describe("getInstanceHost", () => {
+    test("should use the configured instance host for a separately hosted login UI", () => {
+      process.env.ZITADEL_INSTANCE_HOST = "jaynshare-vtdlpj.us1.zitadel.cloud";
+      const mockHeaders = {
+        get: vi.fn(() => "login.jayn.app"),
+      } as any;
+
+      const result = getInstanceHost(mockHeaders);
+
+      expect(result).toBe("jaynshare-vtdlpj.us1.zitadel.cloud");
+      expect(mockHeaders.get).not.toHaveBeenCalled();
+    });
+
     test("should use x-zitadel-instance-host when available", () => {
       const mockHeaders = {
         get: vi.fn((key: string) => {
