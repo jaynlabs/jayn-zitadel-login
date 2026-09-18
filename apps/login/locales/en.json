@@ -1,6 +1,6 @@
 {
   "common": {
-    "back": "Back",
+    "back": "back",
     "title": "Jaynshare"
   },
   "accounts": {
@@ -23,15 +23,15 @@
     }
   },
   "loginname": {
-    "title": "Welcome to jaynshare.",
-    "description": "Sign in to create a pool or join your people.",
-    "register": "Create an account",
-    "submit": "Continue",
+    "title": "welcome back",
+    "description": "sign in to create a pool or join your people.",
+    "register": "register",
+    "submit": "continue",
     "labels": {
-      "loginname": "Email or username",
-      "username": "Username",
-      "usernameOrPhoneNumber": "Username or phone number",
-      "usernameOrEmail": "Email or username"
+      "loginname": "email or username",
+      "username": "username",
+      "usernameOrPhoneNumber": "username or phone number",
+      "usernameOrEmail": "email or username"
     },
     "required": {
       "loginName": "This field is required"
@@ -62,12 +62,12 @@
   },
   "password": {
     "verify": {
-      "title": "Welcome back.",
-      "description": "Enter your password to continue.",
-      "resetPassword": "Forgot your password?",
-      "submit": "Continue",
+      "title": "welcome back",
+      "description": "enter your password to continue.",
+      "resetPassword": "forgot your password?",
+      "submit": "continue",
       "labels": {
-        "password": "Password"
+        "password": "password"
       },
       "required": {
         "password": "This field is required"
@@ -323,8 +323,8 @@
       "title": "Missing data",
       "description": "Provide email, first and last name to register."
     },
-    "title": "Create your account.",
-    "description": "Your private pool is only a minute away.",
+    "title": "register",
+    "description": "your private pool is only a minute away.",
     "noMethodAvailableWarning": "No authentication method available. Please contact your administrator.",
     "selectMethod": "Select the method you would like to authenticate",
     "agreeTo": "To register you must agree to the terms and conditions",

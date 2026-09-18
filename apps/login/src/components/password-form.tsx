@@ -132,7 +132,7 @@ export function PasswordForm({
               required: t("verify.required.password"),
             })}
             label={t("verify.labels.password")}
-            placeholder="Your password"
+            placeholder="password"
             data-testid="password-text-input"
           />
           {!loginSettings?.hidePasswordReset && (

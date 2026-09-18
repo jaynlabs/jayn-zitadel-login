@@ -154,6 +154,7 @@
   letter-spacing: -0.055em;
   line-height: 0.95;
   text-align: left;
+  text-transform: lowercase;
 }
 
 .jayn-auth-heading p,
@@ -171,24 +172,32 @@
   color: var(--jayn-ink) !important;
   font-size: 0.68rem;
   font-weight: 650;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.035em;
   line-height: 1;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 
 .jayn-auth-form .jayn-text-input {
   min-height: 3.5rem;
   padding: 0 1rem;
-  border: 1px solid color-mix(in srgb, var(--jayn-ink) 22%, transparent) !important;
+  border: 1.5px solid color-mix(in srgb, var(--jayn-ink) 42%, transparent) !important;
   border-radius: 0.7rem !important;
-  background: color-mix(in srgb, var(--jayn-paper) 97%, white 3%) !important;
-  box-shadow: 0 1px 0 color-mix(in srgb, white 70%, transparent) inset;
+  background: #fff !important;
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 7px 20px -18px color-mix(in srgb, var(--jayn-ink) 60%, transparent);
   color: var(--jayn-ink) !important;
   font-size: 0.95rem;
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
     background-color 160ms ease;
+}
+
+.dark .jayn-auth-form .jayn-text-input {
+  border-color: color-mix(in srgb, var(--jayn-ink) 48%, transparent) !important;
+  background: color-mix(in srgb, var(--jayn-paper) 88%, white 12%) !important;
+  box-shadow: none;
 }
 
 .jayn-auth-form .jayn-text-input::placeholder {
@@ -225,6 +234,7 @@
 .jayn-auth-form label,
 .jayn-auth-form button:not(.jayn-button) {
   color: var(--jayn-ink-dim);
+  text-transform: lowercase;
 }
 
 .jayn-auth-form button:not(.jayn-button):hover {
@@ -282,6 +292,31 @@
   justify-content: center;
 }
 
+.jayn-auth-form form.flex > button {
+  min-height: 3.5rem;
+  border: 1.5px solid color-mix(in srgb, var(--jayn-ink) 28%, transparent) !important;
+  border-radius: 0.7rem !important;
+  background: #fff !important;
+  color: #171412 !important;
+  text-transform: lowercase;
+}
+
+.jayn-auth-form form.flex > button:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--jayn-accent) 78%,
+    var(--jayn-ink)
+  ) !important;
+  box-shadow: 0 10px 24px -18px #171412a6;
+  transform: translateY(-1px);
+}
+
+.dark .jayn-auth-form form.flex > button {
+  border-color: color-mix(in srgb, var(--jayn-ink) 35%, transparent) !important;
+  background: color-mix(in srgb, var(--jayn-paper) 88%, white 12%) !important;
+  color: var(--jayn-ink) !important;
+}
+
 .jayn-button-primary:not(:disabled) {
   border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
   background: var(--jayn-accent) !important;
@@ -327,6 +362,30 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.jayn-theme-toggle {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--jayn-ink-dim);
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+
+.jayn-theme-toggle:hover,
+.jayn-theme-toggle:focus-visible {
+  color: var(--jayn-ink);
+  text-decoration-color: var(--jayn-accent);
 }
 
 .jayn-auth-loading {
