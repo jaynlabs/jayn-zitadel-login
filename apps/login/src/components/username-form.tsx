@@ -55,7 +55,10 @@ export function UsernameForm({
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const [samlData, setSamlData] = useState<{ url: string; fields: Record<string, string> } | null>(null);
+  const [samlData, setSamlData] = useState<{
+    url: string;
+    fields: Record<string, string>;
+  } | null>(null);
 
   const submitLoginName = useCallback(
     async (values: Inputs, organization?: string) => {
@@ -89,7 +92,10 @@ export function UsernameForm({
   }, [submit, loginName, organization, submitLoginName]);
 
   let inputLabel = t("labels.loginname");
-  if (loginSettings?.disableLoginWithEmail && loginSettings?.disableLoginWithPhone) {
+  if (
+    loginSettings?.disableLoginWithEmail &&
+    loginSettings?.disableLoginWithPhone
+  ) {
     inputLabel = t("labels.username");
   } else if (loginSettings?.disableLoginWithEmail) {
     inputLabel = t("labels.usernameOrPhoneNumber");
@@ -99,8 +105,10 @@ export function UsernameForm({
 
   return (
     <>
-      {samlData && <AutoSubmitForm url={samlData.url} fields={samlData.fields} />}
-      <form className="w-full">
+      {samlData && (
+        <AutoSubmitForm url={samlData.url} fields={samlData.fields} />
+      )}
+      <form className="jayn-flow-form w-full">
         <div className="">
           <TextInput
             type="text"
@@ -111,12 +119,13 @@ export function UsernameForm({
             autoFocus
             {...register("loginName", { required: t("required.loginName") })}
             label={inputLabel}
+            placeholder="you@example.com"
             data-testid="username-text-input"
             suffix={hideSuffix ? undefined : suffix}
           />
           {allowRegister && (
             <button
-              className="hover:text-primary-light-500 dark:hover:text-primary-dark-500 text-sm transition-all"
+              className="jayn-inline-action hover:text-primary-light-500 dark:hover:text-primary-dark-500 text-sm transition-all"
               onClick={() => {
                 const registerParams = new URLSearchParams();
                 if (organization) {
@@ -142,9 +151,9 @@ export function UsernameForm({
             <Alert>{error}</Alert>
           </div>
         )}
-        <div className="mt-4 flex w-full flex-row items-center">
+        <div className="jayn-form-actions mt-4 flex w-full flex-row items-center">
           <BackButton data-testid="back-button" />
-          <span className="flex-grow"></span>
+          <span className="jayn-form-action-spacer flex-grow"></span>
           <Button
             data-testid="submit-button"
             type="submit"

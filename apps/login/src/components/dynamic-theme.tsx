@@ -55,6 +55,7 @@ export function DynamicTheme({
           </a>
 
           <div className="jayn-auth-content">
+            <p className="jayn-auth-eyebrow">private pools, hosted for you</p>
             {branding &&
               (branding.lightTheme?.logoUrl || branding.darkTheme?.logoUrl) && (
                 <div className="jayn-auth-branding">
