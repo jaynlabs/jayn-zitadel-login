@@ -66,10 +66,11 @@
   position: relative;
   display: flex;
   min-width: 0;
-  min-height: 100svh;
+  height: 100svh;
+  min-height: 36rem;
   align-items: center;
   justify-content: center;
-  padding: 7rem clamp(2rem, 6vw, 7rem);
+  padding: 3.25rem clamp(2rem, 5vw, 5rem);
 }
 
 .jayn-auth-wordmark,
@@ -104,24 +105,27 @@
 }
 
 .jayn-auth-content {
-  width: min(100%, 33rem);
-  padding: clamp(1.75rem, 4vw, 2.75rem);
-  border: 1px solid color-mix(in srgb, var(--jayn-ink) 10%, transparent);
+  width: min(100%, 32rem);
+  padding: clamp(1.35rem, 2.5vw, 1.75rem);
+  border: 1px solid #c8c2b9;
   border-radius: 1rem;
-  background: color-mix(in srgb, var(--jayn-paper) 94%, white 6%);
-  box-shadow: 0 32px 80px -62px
-    color-mix(in srgb, var(--jayn-ink) 55%, transparent);
+  background: #f3f0ea;
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 24px 60px -45px #1714128c;
 }
 
 .dark .jayn-auth-content {
-  background: color-mix(in srgb, var(--jayn-paper) 95%, white 5%);
+  border-color: #4d4942;
+  background: #171512;
+  box-shadow: 0 24px 60px -45px #000;
 }
 
 .jayn-auth-eyebrow {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  margin: 0 0 1.65rem;
+  margin: 0 0 1rem;
   color: var(--jayn-ink-dim);
   font-size: 0.68rem;
   font-weight: 650;
@@ -138,18 +142,18 @@
 }
 
 .jayn-auth-branding {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .jayn-auth-heading {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .jayn-auth-heading h1,
 .jayn-auth-content h1 {
   color: var(--jayn-ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.55rem, 4.25vw, 4rem);
+  font-size: clamp(2.35rem, 3.5vw, 3.25rem);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 0.95;
@@ -160,10 +164,10 @@
 .jayn-auth-heading p,
 .jayn-auth-content .ztdl-p {
   max-width: 27rem;
-  margin-top: 1rem;
+  margin-top: 0.55rem;
   color: var(--jayn-ink-dim) !important;
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.45;
   text-align: left;
 }
 
@@ -178,14 +182,14 @@
 }
 
 .jayn-auth-form .jayn-text-input {
-  min-height: 3.5rem;
+  min-height: 3rem;
   padding: 0 1rem;
-  border: 1.5px solid color-mix(in srgb, var(--jayn-ink) 42%, transparent) !important;
+  border: 1px solid #817a70 !important;
   border-radius: 0.7rem !important;
   background: #fff !important;
   box-shadow:
-    0 1px 0 #fff inset,
-    0 7px 20px -18px color-mix(in srgb, var(--jayn-ink) 60%, transparent);
+    0 0 0 1px #817a70 inset,
+    0 1px 0 #fff inset;
   color: var(--jayn-ink) !important;
   font-size: 0.95rem;
   transition:
@@ -195,9 +199,9 @@
 }
 
 .dark .jayn-auth-form .jayn-text-input {
-  border-color: color-mix(in srgb, var(--jayn-ink) 48%, transparent) !important;
-  background: color-mix(in srgb, var(--jayn-paper) 88%, white 12%) !important;
-  box-shadow: none;
+  border-color: #817b70 !important;
+  background: #211f1c !important;
+  box-shadow: 0 0 0 1px #817b70 inset;
 }
 
 .jayn-auth-form .jayn-text-input::placeholder {
@@ -206,7 +210,8 @@
 }
 
 .jayn-auth-form .jayn-text-input:hover {
-  border-color: color-mix(in srgb, var(--jayn-ink) 48%, transparent) !important;
+  border-color: var(--jayn-ink) !important;
+  box-shadow: 0 0 0 1px var(--jayn-ink) inset;
 }
 
 .jayn-auth-form .jayn-text-input:focus {
@@ -220,7 +225,7 @@
 }
 
 .jayn-auth-form .jayn-field-message {
-  min-height: 1.15rem;
+  min-height: 0.85rem;
   height: auto;
   padding-top: 0.3rem;
 }
@@ -258,15 +263,20 @@
 
 .jayn-form-actions {
   gap: 0.75rem;
-  margin-top: 1.65rem !important;
+  margin-top: 1rem !important;
 }
 
 .jayn-button {
-  min-height: 3rem;
-  padding: 0.7rem 1rem !important;
-  border-radius: 0.7rem !important;
-  font-size: 0.78rem;
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem !important;
+  border-radius: 0.65rem !important;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
   font-weight: 600;
+  text-transform: lowercase;
   transition:
     transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 200ms ease !important;
@@ -293,8 +303,8 @@
 }
 
 .jayn-auth-form form.flex > button {
-  min-height: 3.5rem;
-  border: 1.5px solid color-mix(in srgb, var(--jayn-ink) 28%, transparent) !important;
+  min-height: 2.75rem;
+  border: 1px solid #9a9388 !important;
   border-radius: 0.7rem !important;
   background: #fff !important;
   color: #171412 !important;
@@ -312,12 +322,12 @@
 }
 
 .dark .jayn-auth-form form.flex > button {
-  border-color: color-mix(in srgb, var(--jayn-ink) 35%, transparent) !important;
-  background: color-mix(in srgb, var(--jayn-paper) 88%, white 12%) !important;
+  border-color: #706a61 !important;
+  background: #211f1c !important;
   color: var(--jayn-ink) !important;
 }
 
-.jayn-button-primary:not(:disabled) {
+.jayn-button-primary {
   border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
   background: var(--jayn-accent) !important;
   box-shadow: 0 7px 18px -10px #17141280 !important;
@@ -345,13 +355,22 @@
 }
 
 .jayn-button-primary:disabled {
-  border: 1px solid color-mix(in srgb, var(--jayn-ink) 8%, transparent) !important;
-  background: color-mix(
-    in srgb,
-    var(--jayn-ink) 9%,
-    var(--jayn-paper)
-  ) !important;
-  color: color-mix(in srgb, var(--jayn-ink) 45%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
+  background: var(--jayn-accent) !important;
+  color: #171412 !important;
+  opacity: 0.48;
+}
+
+.jayn-auth-form > .w-full > .w-full.pt-6.pb-4 {
+  padding-top: 1rem;
+  padding-bottom: 0;
+}
+
+.jayn-auth-form .ztdl-p.text-center {
+  margin: 0 0 0.3rem;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  text-transform: lowercase;
 }
 
 .jayn-auth-controls {
@@ -414,6 +433,7 @@
   }
 
   .jayn-auth-panel {
+    height: auto;
     min-height: 70svh;
     align-items: flex-start;
     padding: 5.5rem 1rem 6rem;

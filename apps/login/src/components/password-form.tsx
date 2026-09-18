@@ -15,7 +15,6 @@ import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { Spinner } from "./spinner";
-import { Translated } from "./translated";
 
 type Inputs = {
   password: string;
@@ -143,7 +142,7 @@ export function PasswordForm({
               disabled={loading}
               data-testid="reset-button"
             >
-              <Translated i18nKey="verify.resetPassword" namespace="password" />
+              forgot your password?
             </button>
           )}
 
@@ -180,8 +179,7 @@ export function PasswordForm({
             onClick={handleSubmit(submitPassword)}
             data-testid="submit-button"
           >
-            {loading && <Spinner className="mr-2 h-5 w-5" />}{" "}
-            <Translated i18nKey="verify.submit" namespace="password" />
+            {loading && <Spinner className="mr-2 h-5 w-5" />} continue
           </Button>
         </div>
       </form>

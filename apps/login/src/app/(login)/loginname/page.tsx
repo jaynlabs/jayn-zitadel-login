@@ -1,9 +1,13 @@
 import { DynamicTheme } from "@/components/dynamic-theme";
 import { SignInWithIdp } from "@/components/sign-in-with-idp";
-import { Translated } from "@/components/translated";
 import { UsernameForm } from "@/components/username-form";
 import { getServiceConfig } from "@/lib/service-url";
-import { getActiveIdentityProviders, getBrandingSettings, getDefaultOrg, getLoginSettings } from "@/lib/zitadel";
+import {
+  getActiveIdentityProviders,
+  getBrandingSettings,
+  getDefaultOrg,
+  getLoginSettings,
+} from "@/lib/zitadel";
 import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -14,7 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("title") };
 }
 
-export default async function Page(props: { searchParams: Promise<Record<string | number | symbol, string | undefined>> }) {
+export default async function Page(props: {
+  searchParams: Promise<Record<string | number | symbol, string | undefined>>;
+}) {
   const searchParams = await props.searchParams;
 
   const loginName = searchParams?.loginName;
@@ -26,7 +32,10 @@ export default async function Page(props: { searchParams: Promise<Record<string 
   // With an org domain suffix the login name may only be the local part (the
   // form shows the suffix separately), so put it back together for the IdP
   // login hint the same way sendLoginname does for the username form.
-  const idpLoginHint = loginName && orgDomain && !loginName.includes("@") ? `${loginName}@${orgDomain}` : loginName;
+  const idpLoginHint =
+    loginName && orgDomain && !loginName.includes("@")
+      ? `${loginName}@${orgDomain}`
+      : loginName;
 
   const _headers = await headers();
   const { serviceConfig } = getServiceConfig(_headers);
@@ -39,7 +48,10 @@ export default async function Page(props: { searchParams: Promise<Record<string 
     }
   }
 
-  const loginSettings = await getLoginSettings({ serviceConfig, organization: organization ?? defaultOrganization });
+  const loginSettings = await getLoginSettings({
+    serviceConfig,
+    organization: organization ?? defaultOrganization,
+  });
 
   const identityProviders = await getActiveIdentityProviders({
     serviceConfig,
@@ -48,17 +60,16 @@ export default async function Page(props: { searchParams: Promise<Record<string 
     return resp.identityProviders;
   });
 
-  const branding = await getBrandingSettings({ serviceConfig, organization: organization ?? defaultOrganization });
+  const branding = await getBrandingSettings({
+    serviceConfig,
+    organization: organization ?? defaultOrganization,
+  });
 
   return (
     <DynamicTheme branding={branding}>
       <div className="flex flex-col space-y-4">
-        <h1>
-          <Translated i18nKey="title" namespace="loginname" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="description" namespace="loginname" />
-        </p>
+        <h1>welcome back</h1>
+        <p className="ztdl-p">sign in to create a pool or join your people.</p>
       </div>
 
       <div className="w-full">
@@ -68,7 +79,6 @@ export default async function Page(props: { searchParams: Promise<Record<string 
             requestId={requestId}
             organization={organization} // stick to "organization" as we still want to do user discovery based on the searchParams not the default organization, later the organization is determined by the found user
             defaultOrganization={defaultOrganization}
-            loginSettings={loginSettings}
             suffix={orgDomain}
             hideSuffix={branding?.hideLoginNameSuffix}
             submit={submit}

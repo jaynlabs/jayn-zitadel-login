@@ -233,7 +233,7 @@ export function RegisterForm({
             data-testid="submit-button"
           >
             {loading && <Spinner className="mr-2 h-5 w-5" />}
-            <Translated i18nKey="submit" namespace="register" />
+            register
           </Button>
         </div>
       </form>

@@ -2,7 +2,6 @@
 
 import { handleServerActionResponse } from "@/lib/client-utils";
 import { sendLoginname } from "@/lib/server/loginname";
-import { LoginSettings } from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -13,7 +12,6 @@ import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { Spinner } from "./spinner";
-import { Translated } from "./translated";
 
 type Inputs = {
   loginName: string;
@@ -22,7 +20,6 @@ type Inputs = {
 type Props = {
   loginName: string | undefined;
   requestId: string | undefined;
-  loginSettings: LoginSettings | undefined;
   organization?: string;
   defaultOrganization?: string;
   suffix?: string;
@@ -38,7 +35,6 @@ export function UsernameForm({
   defaultOrganization,
   suffix,
   hideSuffix,
-  loginSettings,
   submit,
   allowRegister,
 }: Props) {
@@ -91,18 +87,6 @@ export function UsernameForm({
     }
   }, [submit, loginName, organization, submitLoginName]);
 
-  let inputLabel = t("labels.loginname");
-  if (
-    loginSettings?.disableLoginWithEmail &&
-    loginSettings?.disableLoginWithPhone
-  ) {
-    inputLabel = t("labels.username");
-  } else if (loginSettings?.disableLoginWithEmail) {
-    inputLabel = t("labels.usernameOrPhoneNumber");
-  } else if (loginSettings?.disableLoginWithPhone) {
-    inputLabel = t("labels.usernameOrEmail");
-  }
-
   return (
     <>
       {samlData && (
@@ -118,7 +102,7 @@ export function UsernameForm({
             spellCheck={false}
             autoFocus
             {...register("loginName", { required: t("required.loginName") })}
-            label={inputLabel}
+            label="email or username"
             placeholder="you@example.com"
             data-testid="username-text-input"
             suffix={hideSuffix ? undefined : suffix}
@@ -141,7 +125,7 @@ export function UsernameForm({
               disabled={loading}
               data-testid="register-button"
             >
-              <Translated i18nKey="register" namespace="loginname" />
+              register
             </button>
           )}
         </div>
@@ -163,7 +147,7 @@ export function UsernameForm({
             onClick={handleSubmit((e) => submitLoginName(e, organization))}
           >
             {loading && <Spinner className="mr-2 h-5 w-5" />}
-            <Translated i18nKey="submit" namespace="loginname" />
+            continue
           </Button>
         </div>
       </form>
