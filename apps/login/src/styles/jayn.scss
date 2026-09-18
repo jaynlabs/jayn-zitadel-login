@@ -1,0 +1,256 @@
+:root {
+  --jayn-paper: #fbfaf8;
+  --jayn-ink: #171412;
+  --jayn-ink-dim: #171412a6;
+  --jayn-accent: hsl(42 92% 48%);
+}
+
+.dark {
+  --jayn-paper: #0d0c0b;
+  --jayn-ink: #efebe4;
+  --jayn-ink-dim: #efebe4a6;
+  --jayn-accent: hsl(42 92% 58%);
+}
+
+.jayn-auth-background,
+.jayn-auth-stage {
+  min-height: 100svh;
+  background: var(--jayn-paper);
+  color: var(--jayn-ink);
+}
+
+.jayn-auth-page {
+  display: grid;
+  min-height: 100svh;
+  grid-template-columns: minmax(20rem, 42%) minmax(0, 1fr);
+}
+
+.jayn-auth-art {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 20% 18%,
+      color-mix(in srgb, var(--jayn-accent) 9%, transparent),
+      transparent 38%
+    ),
+    var(--jayn-paper);
+}
+
+.jayn-auth-artwork {
+  position: absolute;
+  inset: -4% -12% -4% -8%;
+  width: 120%;
+  height: 108%;
+  object-fit: cover;
+  object-position: 62% center;
+  filter: brightness(0) saturate(100%) invert(73%) sepia(95%) saturate(1140%)
+    hue-rotate(359deg) brightness(98%) contrast(98%);
+  mask-image: linear-gradient(to right, #000 68%, transparent 100%);
+}
+
+.jayn-auth-artwork-dark {
+  display: none;
+}
+
+.dark .jayn-auth-artwork-light {
+  display: none;
+}
+
+.dark .jayn-auth-artwork-dark {
+  display: block;
+}
+
+.jayn-auth-panel {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem clamp(2rem, 7vw, 8rem);
+}
+
+.jayn-auth-wordmark,
+.jayn-auth-project-link {
+  position: absolute;
+  color: var(--jayn-ink-dim);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.25rem;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+
+.jayn-auth-wordmark {
+  top: 1.35rem;
+  left: 1.5rem;
+}
+
+.jayn-auth-project-link {
+  right: 1.5rem;
+  bottom: 1.35rem;
+}
+
+.jayn-auth-wordmark:hover,
+.jayn-auth-project-link:hover {
+  color: var(--jayn-ink);
+  text-decoration-color: var(--jayn-accent);
+}
+
+.jayn-auth-content {
+  width: min(100%, 29rem);
+}
+
+.jayn-auth-branding {
+  margin-bottom: 2rem;
+}
+
+.jayn-auth-heading {
+  margin-bottom: 2rem;
+}
+
+.jayn-auth-heading h1,
+.jayn-auth-content h1 {
+  color: var(--jayn-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.65rem, 5vw, 4.75rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  text-align: left;
+}
+
+.jayn-auth-heading p,
+.jayn-auth-content .ztdl-p {
+  margin-top: 0.85rem;
+  color: var(--jayn-ink-dim) !important;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.jayn-auth-form input {
+  min-height: 2.85rem;
+  border-color: color-mix(in srgb, var(--jayn-ink) 20%, transparent) !important;
+  border-radius: 0.65rem;
+  background: color-mix(
+    in srgb,
+    var(--jayn-paper) 92%,
+    var(--jayn-ink) 8%
+  ) !important;
+  color: var(--jayn-ink) !important;
+}
+
+.jayn-auth-form input:hover,
+.jayn-auth-form input:focus {
+  border-color: var(--jayn-accent) !important;
+}
+
+.jayn-auth-form label,
+.jayn-auth-form button:not(.jayn-button) {
+  color: var(--jayn-ink-dim);
+}
+
+.jayn-auth-form button:not(.jayn-button):hover {
+  color: var(--jayn-ink);
+}
+
+.jayn-button {
+  min-height: 2.5rem;
+  border-radius: 0.65rem !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms ease !important;
+}
+
+.jayn-button-primary:not(:disabled) {
+  border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
+  background: var(--jayn-accent) !important;
+  box-shadow: 0 7px 18px -10px #17141280 !important;
+  color: #171412 !important;
+}
+
+.jayn-button-primary:not(:disabled):hover {
+  box-shadow: 0 12px 24px -11px #171412a6 !important;
+  transform: translateY(-2px);
+}
+
+.jayn-button-primary:not(:disabled):active {
+  transform: translateY(0) scale(0.99);
+}
+
+.jayn-button-secondary {
+  border: 1px solid #deddd9 !important;
+  background: #fff !important;
+  color: #171412 !important;
+}
+
+.jayn-button-secondary:hover {
+  box-shadow: 0 8px 18px -13px #171412a6 !important;
+  transform: translateY(-1px);
+}
+
+.jayn-auth-controls {
+  position: fixed;
+  z-index: 20;
+  right: 1.35rem;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.jayn-auth-loading {
+  width: min(100% - 2rem, 29rem);
+  margin-left: auto;
+  margin-right: 12%;
+  padding-top: 30vh;
+}
+
+@media (max-width: 767px) {
+  .jayn-auth-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .jayn-auth-art {
+    min-height: 30svh;
+  }
+
+  .jayn-auth-artwork {
+    inset: -38% -4% -38%;
+    width: 108%;
+    height: 176%;
+    object-position: center 55%;
+    mask-image: linear-gradient(to bottom, #000 52%, transparent 100%);
+  }
+
+  .jayn-auth-panel {
+    min-height: 70svh;
+    align-items: flex-start;
+    padding: 5.5rem 1.5rem 6rem;
+  }
+
+  .jayn-auth-heading h1,
+  .jayn-auth-content h1 {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+  }
+
+  .jayn-auth-controls {
+    top: calc(30svh + 1rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jayn-button {
+    transition: none !important;
+  }
+}

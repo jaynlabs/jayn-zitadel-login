@@ -1,4 +1,5 @@
 import "@/styles/globals.scss";
+import "@/styles/jayn.scss";
 
 import { BackgroundWrapper } from "@/components/background-wrapper";
 import { LanguageProvider } from "@/components/language-provider";
@@ -26,7 +27,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("title") };
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const _headers = await headers();
   const { serviceConfig } = getServiceConfig(_headers);
 
@@ -50,10 +55,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Tooltip.Provider>
             <Suspense
               fallback={
-                <BackgroundWrapper
-                  className={`bg-background-light-600 dark:bg-background-dark-600 relative flex min-h-screen flex-col justify-center`}
-                >
-                  <div className="relative mx-auto w-full max-w-[440px] py-8">
+                <BackgroundWrapper className="jayn-auth-background">
+                  <div className="jayn-auth-loading">
                     <Skeleton>
                       <div className="h-40"></div>
                     </Skeleton>
@@ -65,12 +68,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               }
             >
               <LanguageProvider>
-                <BackgroundWrapper
-                  className={`bg-background-light-600 dark:bg-background-dark-600 relative flex min-h-screen flex-col justify-center`}
-                >
-                  <div className="relative mx-auto w-full max-w-[1100px] py-8">
+                <BackgroundWrapper className="jayn-auth-background">
+                  <div className="jayn-auth-stage">
                     <div>{children}</div>
-                    <div className="mx-auto flex max-w-[440px] flex-row items-center justify-end space-x-4 px-4 py-4 md:max-w-full md:px-8">
+                    <div className="jayn-auth-controls">
                       <LanguageSwitcher languages={languages} />
                       <ThemeSwitch />
                     </div>
