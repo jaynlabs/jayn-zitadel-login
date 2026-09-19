@@ -1,14 +1,19 @@
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 
 /**
- * Gets the original host that the user sees in their browser URL.
- * When using rewrites this function prioritizes forwarded headers that preserve the original host.
+ * Gets the ZITADEL instance host used for API routing.
+ * A separately hosted Login UI can explicitly provide the Cloud instance host
+ * because its public host identifies the Login UI, not the ZITADEL instance.
  *
  * @returns The host string (e.g., "zitadel.com")
  * @throws Error if no host is found
  */
 export function getInstanceHost(headers: ReadonlyHeaders): string | null {
-  // use standard proxy headers (x-forwarded-host → host) for both multi-tenant and self-hosted, do not use x-zitadel-instance-host
+  const configuredInstanceHost = process.env.ZITADEL_INSTANCE_HOST?.trim();
+  if (configuredInstanceHost) {
+    return configuredInstanceHost;
+  }
+
   const instanceHost =
     headers.get("x-zitadel-instance-host") || headers.get("x-zitadel-forward-host") || headers.get("host");
 

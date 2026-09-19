@@ -15,7 +15,6 @@ import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { Spinner } from "./spinner";
-import { Translated } from "./translated";
 
 type Inputs = {
   password: string;
@@ -29,7 +28,13 @@ type Props = {
   requestId?: string;
 };
 
-export function PasswordForm({ loginSettings, loginName, organization, defaultOrganization, requestId }: Props) {
+export function PasswordForm({
+  loginSettings,
+  loginName,
+  organization,
+  defaultOrganization,
+  requestId,
+}: Props) {
   const { register, handleSubmit, formState } = useForm<Inputs>({
     mode: "onChange",
   });
@@ -38,7 +43,10 @@ export function PasswordForm({ loginSettings, loginName, organization, defaultOr
 
   const [info, setInfo] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [samlData, setSamlData] = useState<{ url: string; fields: Record<string, string> } | null>(null);
+  const [samlData, setSamlData] = useState<{
+    url: string;
+    fields: Record<string, string>;
+  } | null>(null);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -110,30 +118,42 @@ export function PasswordForm({ loginSettings, loginName, organization, defaultOr
 
   return (
     <>
-      {samlData && <AutoSubmitForm url={samlData.url} fields={samlData.fields} />}
-      <form className="w-full">
+      {samlData && (
+        <AutoSubmitForm url={samlData.url} fields={samlData.fields} />
+      )}
+      <form className="jayn-flow-form w-full">
         <div className={`${error && "animate-shake transform-gpu"}`}>
           <TextInput
             type="password"
             autoComplete="password"
             autoFocus
-            {...register("password", { required: t("verify.required.password") })}
+            {...register("password", {
+              required: t("verify.required.password"),
+            })}
             label={t("verify.labels.password")}
+            placeholder="password"
             data-testid="password-text-input"
           />
           {!loginSettings?.hidePasswordReset && (
             <button
-              className="hover:text-primary-light-500 dark:hover:text-primary-dark-500 text-sm transition-all"
+              className="jayn-inline-action hover:text-primary-light-500 dark:hover:text-primary-dark-500 text-sm transition-all"
               onClick={() => resetPasswordAndContinue()}
               type="button"
               disabled={loading}
               data-testid="reset-button"
             >
-              <Translated i18nKey="verify.resetPassword" namespace="password" />
+              forgot your password?
             </button>
           )}
 
-          {loginName && <input type="hidden" name="loginName" autoComplete="username" value={loginName} />}
+          {loginName && (
+            <input
+              type="hidden"
+              name="loginName"
+              autoComplete="username"
+              value={loginName}
+            />
+          )}
         </div>
 
         {info && (
@@ -148,9 +168,9 @@ export function PasswordForm({ loginSettings, loginName, organization, defaultOr
           </div>
         )}
 
-        <div className="mt-8 flex w-full flex-row items-center">
+        <div className="jayn-form-actions mt-8 flex w-full flex-row items-center">
           <BackButton data-testid="back-button" />
-          <span className="flex-grow"></span>
+          <span className="jayn-form-action-spacer flex-grow"></span>
           <Button
             type="submit"
             className="self-end"
@@ -159,7 +179,7 @@ export function PasswordForm({ loginSettings, loginName, organization, defaultOr
             onClick={handleSubmit(submitPassword)}
             data-testid="submit-button"
           >
-            {loading && <Spinner className="mr-2 h-5 w-5" />} <Translated i18nKey="verify.submit" namespace="password" />
+            {loading && <Spinner className="mr-2 h-5 w-5" />} continue
           </Button>
         </div>
       </form>

@@ -3,9 +3,18 @@
 import { getComponentRoundness } from "@/lib/theme";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { clsx } from "clsx";
-import { ChangeEvent, DetailedHTMLProps, forwardRef, InputHTMLAttributes, ReactNode } from "react";
+import {
+  ChangeEvent,
+  DetailedHTMLProps,
+  forwardRef,
+  InputHTMLAttributes,
+  ReactNode,
+} from "react";
 
-export type TextInputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
+export type TextInputProps = DetailedHTMLProps<
+  InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> & {
   label: string;
   suffix?: string;
   placeholder?: string;
@@ -18,7 +27,11 @@ export type TextInputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
   roundness?: string; // Allow override via props
 };
 
-const styles = (error: boolean, disabled: boolean, roundnessClasses: string = "rounded-md") =>
+const styles = (
+  error: boolean,
+  disabled: boolean,
+  roundnessClasses: string = "rounded-md",
+) =>
   clsx(
     {
       "h-[40px] mb-[2px] p-[7px] bg-input-light-background dark:bg-input-dark-background transition-colors duration-300 grow": true,
@@ -59,14 +72,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const actualRoundness = roundness || getDefaultInputRoundness();
 
     return (
-      <label className="text-12px text-input-light-label dark:text-input-dark-label relative flex flex-col">
-        <span className={`mb-1 leading-3 ${error ? "text-warn-light-500 dark:text-warn-dark-500" : ""}`}>
+      <label className="jayn-field text-12px text-input-light-label dark:text-input-dark-label relative flex flex-col">
+        <span
+          className={`jayn-field-label mb-1 leading-3 ${error ? "text-warn-light-500 dark:text-warn-dark-500" : ""}`}
+        >
           {label} {required && "*"}
         </span>
         <input
           suppressHydrationWarning
           ref={ref}
-          className={styles(!!error, !!disabled, actualRoundness)}
+          className={`${styles(!!error, !!disabled, actualRoundness)} jayn-text-input`}
           defaultValue={defaultValue}
           required={required}
           disabled={disabled}
@@ -89,7 +104,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           </span>
         )}
 
-        <div className="leading-14.5px h-14.5px text-12px text-warn-light-500 dark:text-warn-dark-500 flex flex-row items-center">
+        <div className="jayn-field-message leading-14.5px h-14.5px text-12px text-warn-light-500 dark:text-warn-dark-500 flex flex-row items-center">
           <span>{error ? error : " "}</span>
         </div>
 

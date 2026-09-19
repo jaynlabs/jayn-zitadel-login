@@ -22,7 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("title") };
 }
 
-export default async function Page(props: { searchParams: Promise<Record<string | number | symbol, string | undefined>> }) {
+export default async function Page(props: {
+  searchParams: Promise<Record<string | number | symbol, string | undefined>>;
+}) {
   const searchParams = await props.searchParams;
 
   let { firstname, lastname, email, organization, requestId } = searchParams;
@@ -37,14 +39,23 @@ export default async function Page(props: { searchParams: Promise<Record<string 
     }
   }
 
-  const legal = await getLegalAndSupportSettings({ serviceConfig, organization });
-  const passwordComplexitySettings = await getPasswordComplexitySettings({ serviceConfig, organization });
+  const legal = await getLegalAndSupportSettings({
+    serviceConfig,
+    organization,
+  });
+  const passwordComplexitySettings = await getPasswordComplexitySettings({
+    serviceConfig,
+    organization,
+  });
 
   const branding = await getBrandingSettings({ serviceConfig, organization });
 
   const loginSettings = await getLoginSettings({ serviceConfig, organization });
 
-  const identityProviders = await getActiveIdentityProviders({ serviceConfig, orgId: organization }).then((resp) => {
+  const identityProviders = await getActiveIdentityProviders({
+    serviceConfig,
+    orgId: organization,
+  }).then((resp) => {
     return resp.identityProviders.filter((idp) => {
       return idp.options?.isAutoCreation || idp.options?.isCreationAllowed; // check if IDP allows to create account automatically or manual creation is allowed
     });
@@ -66,7 +77,10 @@ export default async function Page(props: { searchParams: Promise<Record<string 
     );
   }
 
-  if (!loginSettings?.allowRegister && (!loginSettings.allowExternalIdp || identityProviders.length === 0)) {
+  if (
+    !loginSettings?.allowRegister &&
+    (!loginSettings.allowExternalIdp || identityProviders.length === 0)
+  ) {
     return (
       <DynamicTheme branding={branding}>
         <div className="flex flex-col space-y-4">
@@ -85,12 +99,8 @@ export default async function Page(props: { searchParams: Promise<Record<string 
   return (
     <DynamicTheme branding={branding}>
       <div className="flex flex-col space-y-4">
-        <h1>
-          <Translated i18nKey="title" namespace="register" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="description" namespace="register" />
-        </p>
+        <h1>register</h1>
+        <p className="ztdl-p">your private pool is only a minute away.</p>
       </div>
 
       <div className="w-full">
@@ -100,18 +110,23 @@ export default async function Page(props: { searchParams: Promise<Record<string 
           </Alert>
         )}
 
-        {legal && passwordComplexitySettings && organization && loginSettings.allowLocalAuthentication && (
-          <RegisterForm
-            idpCount={!loginSettings?.allowExternalIdp ? 0 : identityProviders.length}
-            legal={legal}
-            organization={organization}
-            firstname={firstname}
-            lastname={lastname}
-            email={email}
-            requestId={requestId}
-            loginSettings={loginSettings}
-          ></RegisterForm>
-        )}
+        {legal &&
+          passwordComplexitySettings &&
+          organization &&
+          loginSettings.allowLocalAuthentication && (
+            <RegisterForm
+              idpCount={
+                !loginSettings?.allowExternalIdp ? 0 : identityProviders.length
+              }
+              legal={legal}
+              organization={organization}
+              firstname={firstname}
+              lastname={lastname}
+              email={email}
+              requestId={requestId}
+              loginSettings={loginSettings}
+            ></RegisterForm>
+          )}
 
         {loginSettings?.allowExternalIdp && !!identityProviders.length && (
           <>

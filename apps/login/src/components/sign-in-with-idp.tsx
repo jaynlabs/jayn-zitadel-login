@@ -2,7 +2,10 @@
 
 import { idpTypeToSlug } from "@/lib/idp";
 import { redirectToIdp } from "@/lib/server/idp";
-import { IdentityProvider, IdentityProviderType } from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
+import {
+  IdentityProvider,
+  IdentityProviderType,
+} from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
 import { ReactNode, useActionState } from "react";
 import { Alert } from "./alert";
 import { AutoSubmitForm } from "./auto-submit-form";
@@ -42,14 +45,21 @@ export function SignInWithIdp({
   const renderIDPButton = (idp: IdentityProvider, index: number) => {
     const { id, name, type } = idp;
 
-    const components: Partial<Record<IdentityProviderType, (props: SignInWithIdentityProviderProps) => ReactNode>> = {
+    const components: Partial<
+      Record<
+        IdentityProviderType,
+        (props: SignInWithIdentityProviderProps) => ReactNode
+      >
+    > = {
       [IdentityProviderType.APPLE]: SignInWithApple,
       [IdentityProviderType.OAUTH]: SignInWithGeneric,
       [IdentityProviderType.OIDC]: SignInWithGeneric,
       [IdentityProviderType.GITHUB]: SignInWithGithub,
       [IdentityProviderType.GITHUB_ES]: SignInWithGithub,
       [IdentityProviderType.AZURE_AD]: SignInWithAzureAd,
-      [IdentityProviderType.GOOGLE]: (props) => <SignInWithGoogle {...props} e2e="google" />,
+      [IdentityProviderType.GOOGLE]: (props) => (
+        <SignInWithGoogle {...props} e2e="google" />
+      ),
       [IdentityProviderType.GITLAB]: SignInWithGitlab,
       [IdentityProviderType.GITLAB_SELF_HOSTED]: SignInWithGitlab,
       [IdentityProviderType.SAML]: SignInWithGeneric,
@@ -65,17 +75,32 @@ export function SignInWithIdp({
         <input type="hidden" name="provider" value={idpTypeToSlug(type)} />
         <input type="hidden" name="requestId" value={requestId} />
         <input type="hidden" name="organization" value={organization} />
-        {sessionId && <input type="hidden" name="sessionId" value={sessionId} />}
-        {postErrorRedirectUrl && <input type="hidden" name="postErrorRedirectUrl" value={postErrorRedirectUrl} />}
-        {loginHint && <input type="hidden" name="loginHint" value={loginHint} />}
+        {sessionId && (
+          <input type="hidden" name="sessionId" value={sessionId} />
+        )}
+        {postErrorRedirectUrl && (
+          <input
+            type="hidden"
+            name="postErrorRedirectUrl"
+            value={postErrorRedirectUrl}
+          />
+        )}
+        {loginHint && (
+          <input type="hidden" name="loginHint" value={loginHint} />
+        )}
         <Component key={id} name={name} />
       </form>
     ) : null;
   };
 
   return (
-    <div className="flex w-full flex-col space-y-2 text-sm">
-      {state?.samlData && <AutoSubmitForm url={state.samlData.url} fields={state.samlData.fields} />}
+    <div className="jayn-idp-grid flex w-full flex-col space-y-2 text-sm">
+      {state?.samlData && (
+        <AutoSubmitForm
+          url={state.samlData.url}
+          fields={state.samlData.fields}
+        />
+      )}
       {showLabel && (
         <p className="ztdl-p text-center">
           <Translated i18nKey="orSignInWith" namespace="idp" />
