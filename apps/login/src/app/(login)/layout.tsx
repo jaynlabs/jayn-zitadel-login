@@ -9,12 +9,13 @@ import ThemeSwitch from "@/components/theme-switch";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Lato } from "next/font/google";
+import { Newsreader } from "next/font/google";
 import React, { Suspense } from "react";
 
-const lato = Lato({
-  weight: ["400", "700", "900"],
+const newsreader = Newsreader({
+  weight: ["400"],
   subsets: ["latin"],
+  display: "swap",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={`${lato.className}`} suppressHydrationWarning>
+    <html className={newsreader.className} suppressHydrationWarning>
       <head />
       <body>
         <ThemeProvider>
