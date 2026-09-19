@@ -328,6 +328,43 @@
   font-size: 0.75rem;
 }
 
+.jayn-idp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.jayn-idp-grid > * {
+  margin-top: 0 !important;
+}
+
+.jayn-idp-grid > .ztdl-p,
+.jayn-idp-grid > [data-testid="error"] {
+  grid-column: 1 / -1;
+}
+
+.jayn-idp-grid > form,
+.jayn-idp-grid > form > button {
+  width: 100%;
+  min-width: 0;
+}
+
+.jayn-icon-only-idp > div > div {
+  justify-content: center;
+}
+
+.jayn-icon-only-idp .jayn-idp-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px !important;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .jayn-auth-form form.flex > button:hover {
   border-color: color-mix(
     in srgb,

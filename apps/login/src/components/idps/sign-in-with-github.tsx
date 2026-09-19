@@ -44,14 +44,19 @@ export const SignInWithGithub = forwardRef<
   const { children, name, ...restProps } = props;
 
   return (
-    <BaseButton {...restProps} ref={ref}>
+    <BaseButton
+      {...restProps}
+      ref={ref}
+      className="jayn-icon-only-idp"
+      aria-label={name || "github"}
+    >
       <div className="jayn-idp-icon mx-2 my-2 flex items-center justify-center">
         <GitHubLogo />
       </div>
       {children ? (
         children
       ) : (
-        <span className="ml-4">
+        <span className="jayn-idp-label ml-4">
           {name ? (
             name
           ) : (

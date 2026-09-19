@@ -11,7 +11,12 @@ export const SignInWithGoogle = forwardRef<
   const { children, name, ...restProps } = props;
 
   return (
-    <BaseButton {...restProps} ref={ref}>
+    <BaseButton
+      {...restProps}
+      ref={ref}
+      className="jayn-icon-only-idp"
+      aria-label={name || "google"}
+    >
       <div className="jayn-idp-icon flex h-12 w-12 items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +58,7 @@ export const SignInWithGoogle = forwardRef<
       {children ? (
         children
       ) : (
-        <span className="ml-4">
+        <span className="jayn-idp-label ml-4">
           {name ? (
             name
           ) : (
