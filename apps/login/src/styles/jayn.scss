@@ -41,7 +41,6 @@
   position: absolute;
   inset: -4% -12% -4% -8%;
   width: 120%;
-  max-width: none;
   height: 108%;
   object-fit: cover;
   object-position: var(--jayn-art-position-column, center);
@@ -558,6 +557,7 @@
   .jayn-auth-artwork {
     inset: -72% auto -72% var(--jayn-art-mobile-left, -10%);
     width: var(--jayn-art-mobile-width, 120%);
+    max-width: none;
     height: 244%;
     object-position: var(--jayn-art-position-band, center 30%);
     -webkit-mask-image: none;
