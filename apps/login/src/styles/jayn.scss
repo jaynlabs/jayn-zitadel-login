@@ -41,6 +41,7 @@
   position: absolute;
   inset: -4% -12% -4% -8%;
   width: 120%;
+  max-width: none;
   height: 108%;
   object-fit: cover;
   object-position: var(--jayn-art-position-column, center);
@@ -80,7 +81,7 @@
   background: transparent;
   color: var(--jayn-ink-dim);
   font-family: inherit;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.08em;
   text-decoration: underline;
   text-decoration-color: transparent !important;
@@ -176,7 +177,7 @@
 .jayn-auth-form .jayn-field-label {
   margin-bottom: 0.25rem;
   color: var(--jayn-ink) !important;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0.035em;
   line-height: 1;
