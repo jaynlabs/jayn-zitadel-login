@@ -8,7 +8,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ThemeSwitch from "@/components/theme-switch";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
 import { Newsreader } from "next/font/google";
 import React, { Suspense } from "react";
 
@@ -21,10 +20,16 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("common");
-  return { title: t("title") };
-}
+export const metadata: Metadata = {
+  title: {
+    default: "login",
+    template: "login",
+  },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

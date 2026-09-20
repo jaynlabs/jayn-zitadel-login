@@ -25,7 +25,7 @@
 .jayn-auth-page {
   display: grid;
   min-height: 100svh;
-  grid-template-columns: minmax(20rem, 1fr) minmax(0, 2fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .jayn-auth-art {
@@ -141,26 +141,6 @@
   border-color: #4d4942;
   background: #171512;
   box-shadow: 0 24px 60px -45px #000;
-}
-
-.jayn-auth-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 0.55rem;
-  color: var(--jayn-ink-dim);
-  font-size: 0.5625rem;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.jayn-auth-eyebrow::before {
-  width: 1.25rem;
-  height: 1px;
-  background: var(--jayn-accent);
-  content: "";
 }
 
 .jayn-auth-branding {
@@ -518,22 +498,25 @@
   }
 
   .jayn-auth-art {
-    min-height: 30svh;
+    height: 18svh;
+    min-height: 7.5rem;
+    max-height: 10rem;
+    flex: none;
   }
 
   .jayn-auth-artwork {
-    inset: -38% -4% -38%;
+    inset: -72% -4%;
     width: 108%;
-    height: 176%;
+    height: 244%;
     object-position: var(--jayn-art-position-band, center 30%);
-    mask-image: linear-gradient(to bottom, #000 52%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 42%, transparent 88%);
   }
 
   .jayn-auth-panel {
     height: auto;
-    min-height: 70svh;
+    min-height: calc(82svh - 1px);
     align-items: flex-start;
-    padding: 5.5rem 1rem 6rem;
+    padding: 3rem 1rem 5.5rem;
   }
 
   .jayn-auth-content {
