@@ -92,6 +92,13 @@
     text-decoration-color 180ms ease;
 }
 
+.jayn-auth-header {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+}
+
 .jayn-auth-wordmark {
   position: fixed;
   z-index: 20;
@@ -309,8 +316,13 @@
 }
 
 .jayn-auth-form .jayn-button-primary::after {
+  width: 0.65rem;
+  height: 0.65rem;
+  flex: none;
   margin-left: 0.75rem;
-  content: "↗";
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23171412' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9 9 3M4 3h5v5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  content: "";
   transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -426,7 +438,7 @@
   color: var(--jayn-ink) !important;
 }
 
-.jayn-auth-form form.flex > button.jayn-button-primary {
+.jayn-auth-form .jayn-button-primary {
   border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
   background: var(--jayn-accent) !important;
   box-shadow: 0 7px 18px -10px #17141280 !important;
@@ -464,7 +476,7 @@
   transform: none;
 }
 
-.jayn-auth-form form.flex > button.jayn-button-primary:disabled {
+.jayn-auth-form .jayn-button-primary:disabled {
   border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
   background: var(--jayn-accent) !important;
   color: #171412 !important;
