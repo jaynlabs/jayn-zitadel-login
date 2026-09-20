@@ -119,13 +119,13 @@ export default async function Page(props: { searchParams: Promise<Record<string 
         )}
 
         {loginSettings?.allowExternalIdp && !!identityProviders.length && (
-          <>
+          <div className="jayn-register-idps">
             <SignInWithIdp
               identityProviders={identityProviders}
               requestId={requestId}
               organization={organization}
             ></SignInWithIdp>
-          </>
+          </div>
         )}
       </div>
     </DynamicTheme>
