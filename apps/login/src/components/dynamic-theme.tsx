@@ -33,6 +33,8 @@ export function DynamicTheme({
   const artworkStyle = {
     "--jayn-art-position-band": art.band ?? "center 30%",
     "--jayn-art-position-column": art.column ?? "center",
+    "--jayn-art-mobile-left": art.mobileLeft ?? "-10%",
+    "--jayn-art-mobile-width": art.mobileWidth ?? "120%",
   } as CSSProperties;
 
   return (

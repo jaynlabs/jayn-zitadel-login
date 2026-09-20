@@ -80,7 +80,7 @@
   background: transparent;
   color: var(--jayn-ink-dim);
   font-family: inherit;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-decoration: underline;
   text-decoration-color: transparent !important;
@@ -272,7 +272,7 @@
 }
 
 .jayn-auth-method {
-  min-height: 3.75rem;
+  min-height: 3rem;
   padding: 0.5rem 0.65rem !important;
   border-color: color-mix(in srgb, var(--jayn-ink) 28%, transparent) !important;
   border-radius: 0.55rem !important;
@@ -555,8 +555,8 @@
   }
 
   .jayn-auth-artwork {
-    inset: -72% -10%;
-    width: 120%;
+    inset: -72% auto -72% var(--jayn-art-mobile-left, -10%);
+    width: var(--jayn-art-mobile-width, 120%);
     height: 244%;
     object-position: var(--jayn-art-position-band, center 30%);
     -webkit-mask-image: none;

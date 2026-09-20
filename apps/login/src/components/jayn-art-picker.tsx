@@ -8,10 +8,12 @@ export type JaynArt = {
   slug: string;
   band?: string;
   column?: string;
+  mobileLeft?: string;
+  mobileWidth?: string;
 };
 
 export const JAYN_ART: [JaynArt, ...JaynArt[]] = [
-  { slug: "dreamer", band: "center 55%", column: "62% center" },
+  { slug: "dreamer", band: "center 55%", column: "62% center", mobileLeft: "0", mobileWidth: "132%" },
   { slug: "harvest", band: "center 45%" },
   { slug: "beard", band: "center 20%" },
   { slug: "bloom", band: "center 35%", column: "70% center" },
