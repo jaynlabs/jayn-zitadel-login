@@ -3,6 +3,7 @@
   --jayn-ink: #171412;
   --jayn-ink-dim: #171412a6;
   --jayn-accent: hsl(42 92% 48%);
+  color-scheme: light;
 }
 
 .dark {
@@ -10,6 +11,7 @@
   --jayn-ink: #efebe4;
   --jayn-ink-dim: #efebe4a6;
   --jayn-accent: hsl(42 92% 58%);
+  color-scheme: dark;
 }
 
 .jayn-auth-background,
@@ -23,7 +25,7 @@
 .jayn-auth-page {
   display: grid;
   min-height: 100svh;
-  grid-template-columns: minmax(22rem, 46%) minmax(0, 1fr);
+  grid-template-columns: minmax(20rem, 1fr) minmax(0, 2fr);
 }
 
 .jayn-auth-art {
@@ -31,11 +33,7 @@
   min-height: 100%;
   overflow: hidden;
   background:
-    radial-gradient(
-      circle at 20% 18%,
-      color-mix(in srgb, var(--jayn-accent) 9%, transparent),
-      transparent 38%
-    ),
+    radial-gradient(circle at 20% 18%, color-mix(in srgb, var(--jayn-accent) 9%, transparent), transparent 38%),
     var(--jayn-paper);
 }
 
@@ -45,9 +43,9 @@
   width: 120%;
   height: 108%;
   object-fit: cover;
-  object-position: 62% center;
-  filter: brightness(0) saturate(100%) invert(73%) sepia(95%) saturate(1140%)
-    hue-rotate(359deg) brightness(98%) contrast(98%);
+  object-position: var(--jayn-art-position-column, center);
+  filter: brightness(0) saturate(100%) invert(71%) sepia(86%) saturate(501%) hue-rotate(342deg) brightness(88%)
+    contrast(112%);
   mask-image: linear-gradient(to right, #000 68%, transparent 100%);
 }
 
@@ -61,6 +59,8 @@
 
 .dark .jayn-auth-artwork-dark {
   display: block;
+  filter: brightness(0) saturate(100%) invert(51%) sepia(16%) saturate(6120%) hue-rotate(349deg) brightness(176%)
+    contrast(93%);
 }
 
 .jayn-auth-panel {
@@ -74,35 +74,49 @@
   padding: 2rem clamp(1.5rem, 4vw, 4rem);
 }
 
-.jayn-auth-wordmark,
-.jayn-auth-project-link {
-  position: absolute;
+.jayn-chrome-control {
+  border: 0;
+  padding: 0;
+  background: transparent;
   color: var(--jayn-ink-dim);
   font-family: inherit;
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
   text-decoration: underline;
-  text-decoration-color: transparent;
+  text-decoration-color: transparent !important;
+  text-decoration-thickness: 1px;
   text-underline-offset: 0.25rem;
+  cursor: pointer;
   transition:
     color 180ms ease,
     text-decoration-color 180ms ease;
 }
 
 .jayn-auth-wordmark {
-  top: 1.35rem;
-  left: 1.5rem;
+  position: fixed;
+  z-index: 20;
+  top: 1rem;
+  left: 1.25rem;
 }
 
 .jayn-auth-project-link {
-  right: 1.5rem;
-  bottom: 1.35rem;
+  position: fixed;
+  z-index: 20;
+  right: 1.25rem;
+  bottom: 1rem;
 }
 
-.jayn-auth-wordmark:hover,
-.jayn-auth-project-link:hover {
-  color: var(--jayn-ink);
-  text-decoration-color: var(--jayn-accent);
+.jayn-chrome-control:hover,
+.jayn-chrome-control:focus-visible {
+  color: var(--jayn-ink) !important;
+  text-decoration-color: var(--jayn-accent) !important;
+}
+
+.jayn-art-picker {
+  position: fixed;
+  z-index: 20;
+  right: 1.25rem;
+  bottom: 3.25rem;
 }
 
 .jayn-auth-content {
@@ -215,11 +229,7 @@
 }
 
 .jayn-auth-form .jayn-text-input:focus {
-  border-color: color-mix(
-    in srgb,
-    var(--jayn-accent) 82%,
-    var(--jayn-ink)
-  ) !important;
+  border-color: color-mix(in srgb, var(--jayn-accent) 82%, var(--jayn-ink)) !important;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--jayn-accent) 18%, transparent);
   outline: none;
 }
@@ -249,8 +259,7 @@
 .jayn-auth-form .jayn-inline-action {
   width: fit-content;
   margin-top: 0.15rem;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--jayn-accent) 65%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--jayn-accent) 65%, transparent);
   color: var(--jayn-ink-dim);
   font-size: 0.625rem;
   line-height: 1.45;
@@ -258,7 +267,8 @@
 }
 
 .jayn-auth-form .jayn-inline-action:hover {
-  border-bottom-color: var(--jayn-accent);
+  border-bottom-color: var(--jayn-accent) !important;
+  color: var(--jayn-ink) !important;
 }
 
 .jayn-form-actions {
@@ -395,11 +405,7 @@
 }
 
 .jayn-auth-form form.flex > button:hover {
-  border-color: color-mix(
-    in srgb,
-    var(--jayn-accent) 78%,
-    var(--jayn-ink)
-  ) !important;
+  border-color: color-mix(in srgb, var(--jayn-accent) 78%, var(--jayn-ink)) !important;
   box-shadow: 0 12px 24px -11px #171412a6;
   transform: translateY(-2px);
 }
@@ -420,7 +426,7 @@
   color: var(--jayn-ink) !important;
 }
 
-.jayn-button-primary {
+.jayn-auth-form form.flex > button.jayn-button-primary {
   border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
   background: var(--jayn-accent) !important;
   box-shadow: 0 7px 18px -10px #17141280 !important;
@@ -458,7 +464,7 @@
   transform: none;
 }
 
-.jayn-button-primary:disabled {
+.jayn-auth-form form.flex > button.jayn-button-primary:disabled {
   border: 1px solid color-mix(in srgb, var(--jayn-accent) 75%, #171412) !important;
   background: var(--jayn-accent) !important;
   color: #171412 !important;
@@ -486,30 +492,6 @@
   gap: 0.75rem;
 }
 
-.jayn-theme-toggle {
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: var(--jayn-ink-dim);
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.25em;
-  transition:
-    color 180ms ease,
-    text-decoration-color 180ms ease;
-}
-
-.jayn-theme-toggle:hover,
-.jayn-theme-toggle:focus-visible {
-  color: var(--jayn-ink);
-  text-decoration-color: var(--jayn-accent);
-}
-
 .jayn-auth-loading {
   width: min(100% - 2rem, 29rem);
   margin-left: auto;
@@ -531,7 +513,7 @@
     inset: -38% -4% -38%;
     width: 108%;
     height: 176%;
-    object-position: center 55%;
+    object-position: var(--jayn-art-position-band, center 30%);
     mask-image: linear-gradient(to bottom, #000 52%, transparent 100%);
   }
 
@@ -549,10 +531,6 @@
   .jayn-auth-heading h1,
   .jayn-auth-content h1 {
     font-size: clamp(1.75rem, 9vw, 2.25rem);
-  }
-
-  .jayn-auth-controls {
-    top: calc(30svh + 1rem);
   }
 
   .jayn-form-actions {

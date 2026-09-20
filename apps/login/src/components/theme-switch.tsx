@@ -15,11 +15,7 @@ export default function ThemeSwitch() {
     setMounted(true);
   }, []);
 
-  if (
-    !mounted ||
-    themeMode === ThemeMode.LIGHT ||
-    themeMode === ThemeMode.DARK
-  ) {
+  if (!mounted || themeMode === ThemeMode.LIGHT || themeMode === ThemeMode.DARK) {
     return null;
   }
 
@@ -32,7 +28,7 @@ export default function ThemeSwitch() {
       onClick={() => setTheme(target)}
       aria-label={label}
       title={label}
-      className="jayn-theme-toggle"
+      className="jayn-theme-toggle jayn-chrome-control"
     >
       {target}
     </button>
