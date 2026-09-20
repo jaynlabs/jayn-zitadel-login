@@ -14,8 +14,11 @@ import React, { Suspense } from "react";
 
 const newsreader = Newsreader({
   weight: ["400"],
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
+  fallback: ["Georgia", "Times New Roman"],
+  adjustFontFallback: false,
+  variable: "--font-newsreader",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -29,7 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={newsreader.className} suppressHydrationWarning>
+    <html
+      className={`${newsreader.className} ${newsreader.variable}`}
+      suppressHydrationWarning
+    >
       <head />
       <body>
         <ThemeProvider>
