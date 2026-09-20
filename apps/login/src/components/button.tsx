@@ -1,8 +1,4 @@
-import {
-  APPEARANCE_STYLES,
-  getComponentRoundness,
-  getThemeConfig,
-} from "@/lib/theme";
+import { APPEARANCE_STYLES, getComponentRoundness, getThemeConfig } from "@/lib/theme";
 import { ThemeableProps } from "@/lib/themeUtils";
 import { clsx } from "clsx";
 import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from "react";
@@ -24,10 +20,7 @@ export enum ButtonColors {
   Warn = "Warn",
 }
 
-export type ButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
+export type ButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   size?: ButtonSizes;
   variant?: ButtonVariants;
   color?: ButtonColors;
@@ -69,10 +62,7 @@ function getDefaultButtonRoundness(): string {
 function getDefaultButtonAppearance(): string {
   const themeConfig = getThemeConfig();
   const appearance = APPEARANCE_STYLES[themeConfig.appearance];
-  return (
-    appearance?.button ||
-    "border border-button-light-border dark:border-button-dark-border"
-  ); // Fallback to flat design
+  return appearance?.button || "border border-button-light-border dark:border-button-dark-border"; // Fallback to flat design
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -97,9 +87,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type="button"
         ref={ref}
         className={`${getButtonClasses(size, variant, color, actualRoundness, actualAppearance)} jayn-button ${
-          variant === ButtonVariants.Primary
-            ? "jayn-button-primary"
-            : "jayn-button-secondary"
+          variant === ButtonVariants.Primary ? "jayn-button-primary" : "jayn-button-secondary"
         } ${className}`}
         {...props}
       >

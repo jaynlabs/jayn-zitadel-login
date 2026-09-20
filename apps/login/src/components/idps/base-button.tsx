@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  APPEARANCE_STYLES,
-  getComponentRoundness,
-  getThemeConfig,
-} from "@/lib/theme";
+import { APPEARANCE_STYLES, getComponentRoundness, getThemeConfig } from "@/lib/theme";
 import { clsx } from "clsx";
 import { Loader2Icon } from "lucide-react";
 import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from "react";
@@ -22,16 +18,10 @@ export type SignInWithIdentityProviderProps = DetailedHTMLProps<
 function getDefaultIdpButtonAppearance(): string {
   const themeConfig = getThemeConfig();
   const appearance = APPEARANCE_STYLES[themeConfig.appearance];
-  return (
-    appearance?.["idp-button"] ||
-    "border border-divider-light dark:border-divider-dark"
-  ); // Fallback to basic border
+  return appearance?.["idp-button"] || "border border-divider-light dark:border-divider-dark"; // Fallback to basic border
 }
 
-export const BaseButton = forwardRef<
-  HTMLButtonElement,
-  SignInWithIdentityProviderProps
->(function BaseButton(props, ref) {
+export const BaseButton = forwardRef<HTMLButtonElement, SignInWithIdentityProviderProps>(function BaseButton(props, ref) {
   const formStatus = useFormStatus();
   const buttonRoundness = getComponentRoundness("button");
   const idpButtonAppearance = getDefaultIdpButtonAppearance();
@@ -51,9 +41,7 @@ export const BaseButton = forwardRef<
       )}
     >
       <div className="flex flex-1 items-center justify-between gap-4">
-        <div className="flex flex-1 flex-row items-center">
-          {props.children}
-        </div>
+        <div className="flex flex-1 flex-row items-center">{props.children}</div>
         {formStatus.pending && <Loader2Icon className="h-4 w-4 animate-spin" />}
       </div>
     </button>

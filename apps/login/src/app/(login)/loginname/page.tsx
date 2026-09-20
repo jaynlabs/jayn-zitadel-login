@@ -2,12 +2,7 @@ import { DynamicTheme } from "@/components/dynamic-theme";
 import { SignInWithIdp } from "@/components/sign-in-with-idp";
 import { UsernameForm } from "@/components/username-form";
 import { getServiceConfig } from "@/lib/service-url";
-import {
-  getActiveIdentityProviders,
-  getBrandingSettings,
-  getDefaultOrg,
-  getLoginSettings,
-} from "@/lib/zitadel";
+import { getActiveIdentityProviders, getBrandingSettings, getDefaultOrg, getLoginSettings } from "@/lib/zitadel";
 import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -18,9 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("title") };
 }
 
-export default async function Page(props: {
-  searchParams: Promise<Record<string | number | symbol, string | undefined>>;
-}) {
+export default async function Page(props: { searchParams: Promise<Record<string | number | symbol, string | undefined>> }) {
   const searchParams = await props.searchParams;
 
   const loginName = searchParams?.loginName;
@@ -32,10 +25,7 @@ export default async function Page(props: {
   // With an org domain suffix the login name may only be the local part (the
   // form shows the suffix separately), so put it back together for the IdP
   // login hint the same way sendLoginname does for the username form.
-  const idpLoginHint =
-    loginName && orgDomain && !loginName.includes("@")
-      ? `${loginName}@${orgDomain}`
-      : loginName;
+  const idpLoginHint = loginName && orgDomain && !loginName.includes("@") ? `${loginName}@${orgDomain}` : loginName;
 
   const _headers = await headers();
   const { serviceConfig } = getServiceConfig(_headers);

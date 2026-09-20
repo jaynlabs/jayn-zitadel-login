@@ -89,9 +89,7 @@ export function UsernameForm({
 
   return (
     <>
-      {samlData && (
-        <AutoSubmitForm url={samlData.url} fields={samlData.fields} />
-      )}
+      {samlData && <AutoSubmitForm url={samlData.url} fields={samlData.fields} />}
       <form className="jayn-flow-form w-full">
         <div className="">
           <TextInput

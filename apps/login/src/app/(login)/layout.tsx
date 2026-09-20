@@ -26,16 +26,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("title") };
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      className={`${newsreader.className} ${newsreader.variable}`}
-      suppressHydrationWarning
-    >
+    <html className={`${newsreader.className} ${newsreader.variable}`} suppressHydrationWarning>
       <head />
       <body>
         <ThemeProvider>

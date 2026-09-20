@@ -22,9 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("title") };
 }
 
-export default async function Page(props: {
-  searchParams: Promise<Record<string | number | symbol, string | undefined>>;
-}) {
+export default async function Page(props: { searchParams: Promise<Record<string | number | symbol, string | undefined>> }) {
   const searchParams = await props.searchParams;
 
   let { firstname, lastname, email, organization, requestId } = searchParams;
@@ -77,10 +75,7 @@ export default async function Page(props: {
     );
   }
 
-  if (
-    !loginSettings?.allowRegister &&
-    (!loginSettings.allowExternalIdp || identityProviders.length === 0)
-  ) {
+  if (!loginSettings?.allowRegister && (!loginSettings.allowExternalIdp || identityProviders.length === 0)) {
     return (
       <DynamicTheme branding={branding}>
         <div className="flex flex-col space-y-4">
@@ -110,23 +105,18 @@ export default async function Page(props: {
           </Alert>
         )}
 
-        {legal &&
-          passwordComplexitySettings &&
-          organization &&
-          loginSettings.allowLocalAuthentication && (
-            <RegisterForm
-              idpCount={
-                !loginSettings?.allowExternalIdp ? 0 : identityProviders.length
-              }
-              legal={legal}
-              organization={organization}
-              firstname={firstname}
-              lastname={lastname}
-              email={email}
-              requestId={requestId}
-              loginSettings={loginSettings}
-            ></RegisterForm>
-          )}
+        {legal && passwordComplexitySettings && organization && loginSettings.allowLocalAuthentication && (
+          <RegisterForm
+            idpCount={!loginSettings?.allowExternalIdp ? 0 : identityProviders.length}
+            legal={legal}
+            organization={organization}
+            firstname={firstname}
+            lastname={lastname}
+            email={email}
+            requestId={requestId}
+            loginSettings={loginSettings}
+          ></RegisterForm>
+        )}
 
         {loginSettings?.allowExternalIdp && !!identityProviders.length && (
           <>

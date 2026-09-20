@@ -5,11 +5,7 @@ import { Translated } from "@/components/translated";
 import { UserAvatar } from "@/components/user-avatar";
 import { getServiceConfig } from "@/lib/service-url";
 import { loadMostRecentSession } from "@/lib/session";
-import {
-  getBrandingSettings,
-  getDefaultOrg,
-  getLoginSettings,
-} from "@/lib/zitadel";
+import { getBrandingSettings, getDefaultOrg, getLoginSettings } from "@/lib/zitadel";
 import { Organization } from "@zitadel/proto/zitadel/org/v2/org_pb";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -20,9 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("verify.title") };
 }
 
-export default async function Page(props: {
-  searchParams: Promise<Record<string | number | symbol, string | undefined>>;
-}) {
+export default async function Page(props: { searchParams: Promise<Record<string | number | symbol, string | undefined>> }) {
   const searchParams = await props.searchParams;
   let { loginName, organization, requestId } = searchParams;
 
@@ -49,17 +43,11 @@ export default async function Page(props: {
 
   const branding = await getBrandingSettings({
     serviceConfig,
-    organization:
-      organization ??
-      sessionFactors?.factors?.user?.organizationId ??
-      defaultOrganization,
+    organization: organization ?? sessionFactors?.factors?.user?.organizationId ?? defaultOrganization,
   });
   const loginSettings = await getLoginSettings({
     serviceConfig,
-    organization:
-      organization ??
-      sessionFactors?.factors?.user?.organizationId ??
-      defaultOrganization,
+    organization: organization ?? sessionFactors?.factors?.user?.organizationId ?? defaultOrganization,
   });
 
   return (
@@ -76,12 +64,7 @@ export default async function Page(props: {
             searchParams={searchParams}
           ></UserAvatar>
         ) : loginName ? (
-          <UserAvatar
-            loginName={loginName}
-            displayName={loginName}
-            showDropdown
-            searchParams={searchParams}
-          ></UserAvatar>
+          <UserAvatar loginName={loginName} displayName={loginName} showDropdown searchParams={searchParams}></UserAvatar>
         ) : null}
       </div>
 

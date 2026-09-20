@@ -3,18 +3,9 @@
 import { getComponentRoundness } from "@/lib/theme";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { clsx } from "clsx";
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  forwardRef,
-  InputHTMLAttributes,
-  ReactNode,
-} from "react";
+import { ChangeEvent, DetailedHTMLProps, forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
-export type TextInputProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> & {
+export type TextInputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   label: string;
   suffix?: string;
   placeholder?: string;
@@ -27,11 +18,7 @@ export type TextInputProps = DetailedHTMLProps<
   roundness?: string; // Allow override via props
 };
 
-const styles = (
-  error: boolean,
-  disabled: boolean,
-  roundnessClasses: string = "rounded-md",
-) =>
+const styles = (error: boolean, disabled: boolean, roundnessClasses: string = "rounded-md") =>
   clsx(
     {
       "h-[40px] mb-[2px] p-[7px] bg-input-light-background dark:bg-input-dark-background transition-colors duration-300 grow": true,
@@ -73,9 +60,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 
     return (
       <label className="jayn-field text-12px text-input-light-label dark:text-input-dark-label relative flex flex-col">
-        <span
-          className={`jayn-field-label mb-1 leading-3 ${error ? "text-warn-light-500 dark:text-warn-dark-500" : ""}`}
-        >
+        <span className={`jayn-field-label mb-1 leading-3 ${error ? "text-warn-light-500 dark:text-warn-dark-500" : ""}`}>
           {label} {required && "*"}
         </span>
         <input

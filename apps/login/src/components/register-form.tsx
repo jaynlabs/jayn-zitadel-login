@@ -3,20 +3,13 @@
 import { handleServerActionResponse } from "@/lib/client-utils";
 import { registerUser } from "@/lib/server/register";
 import { LegalAndSupportSettings } from "@zitadel/proto/zitadel/settings/v2/legal_settings_pb";
-import {
-  LoginSettings,
-  PasskeysType,
-} from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
+import { LoginSettings, PasskeysType } from "@zitadel/proto/zitadel/settings/v2/login_settings_pb";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Alert, AlertType } from "./alert";
-import {
-  AuthenticationMethod,
-  AuthenticationMethodRadio,
-  methods,
-} from "./authentication-method-radio";
+import { AuthenticationMethod, AuthenticationMethodRadio, methods } from "./authentication-method-radio";
 import { AutoSubmitForm } from "./auto-submit-form";
 import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
@@ -96,10 +89,7 @@ export function RegisterForm({
     }
   }
 
-  async function submitAndContinue(
-    value: Inputs,
-    withPassword: boolean = false,
-  ) {
+  async function submitAndContinue(value: Inputs, withPassword: boolean = false) {
     const registerParams: any = value;
 
     if (organization) {
@@ -112,9 +102,7 @@ export function RegisterForm({
 
     // redirect user to /register/password if password is chosen
     if (withPassword) {
-      return router.push(
-        `/register/password?` + new URLSearchParams(registerParams),
-      );
+      return router.push(`/register/password?` + new URLSearchParams(registerParams));
     } else {
       return submitAndRegister(value);
     }
@@ -125,17 +113,12 @@ export function RegisterForm({
   const [tosAndPolicyAccepted, setTosAndPolicyAccepted] = useState(false);
 
   // Check if legal acceptance is required
-  const isLegalAcceptanceRequired = !!(
-    legal?.tosLink || legal?.privacyPolicyLink
-  );
-  const canSubmit =
-    formState.isValid && (!isLegalAcceptanceRequired || tosAndPolicyAccepted);
+  const isLegalAcceptanceRequired = !!(legal?.tosLink || legal?.privacyPolicyLink);
+  const canSubmit = formState.isValid && (!isLegalAcceptanceRequired || tosAndPolicyAccepted);
 
   return (
     <>
-      {samlData && (
-        <AutoSubmitForm url={samlData.url} fields={samlData.fields} />
-      )}
+      {samlData && <AutoSubmitForm url={samlData.url} fields={samlData.fields} />}
       <form className="jayn-flow-form w-full">
         <div className="mb-4 grid grid-cols-2 gap-4">
           <div className="">
@@ -174,37 +157,26 @@ export function RegisterForm({
           </div>
         </div>
         {(legal?.tosLink || legal?.privacyPolicyLink) && (
-          <PrivacyPolicyCheckboxes
-            legal={legal}
-            onChange={setTosAndPolicyAccepted}
-          />
+          <PrivacyPolicyCheckboxes legal={legal} onChange={setTosAndPolicyAccepted} />
         )}
         {/* show chooser if both methods are allowed */}
-        {loginSettings &&
-          loginSettings.allowLocalAuthentication &&
-          loginSettings.passkeysType == PasskeysType.ALLOWED && (
-            <>
-              <p className="ztdl-p mt-4 mb-6 block text-left">
-                <Translated i18nKey="selectMethod" namespace="register" />
-              </p>
+        {loginSettings && loginSettings.allowLocalAuthentication && loginSettings.passkeysType == PasskeysType.ALLOWED && (
+          <>
+            <p className="ztdl-p mt-4 mb-6 block text-left">
+              <Translated i18nKey="selectMethod" namespace="register" />
+            </p>
 
-              <div className="pb-4">
-                <AuthenticationMethodRadio
-                  selected={selected}
-                  selectionChanged={setSelected}
-                />
-              </div>
-            </>
-          )}
+            <div className="pb-4">
+              <AuthenticationMethodRadio selected={selected} selectionChanged={setSelected} />
+            </div>
+          </>
+        )}
         {!loginSettings?.allowLocalAuthentication &&
           loginSettings?.passkeysType !== PasskeysType.ALLOWED &&
           (!loginSettings?.allowExternalIdp || !idpCount) && (
             <div className="py-4">
               <Alert type={AlertType.INFO}>
-                <Translated
-                  i18nKey="noMethodAvailableWarning"
-                  namespace="register"
-                />
+                <Translated i18nKey="noMethodAvailableWarning" namespace="register" />
               </Alert>
             </div>
           )}
@@ -223,8 +195,7 @@ export function RegisterForm({
             disabled={loading || !canSubmit}
             onClick={handleSubmit((values) => {
               const usePasswordToContinue: boolean =
-                loginSettings?.allowLocalAuthentication &&
-                loginSettings?.passkeysType == PasskeysType.ALLOWED
+                loginSettings?.allowLocalAuthentication && loginSettings?.passkeysType == PasskeysType.ALLOWED
                   ? !(selected === methods[0]) // choose selection if both available
                   : !!loginSettings?.allowLocalAuthentication; // if password is chosen
               // set password as default if only password is allowed

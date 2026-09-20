@@ -28,13 +28,7 @@ type Props = {
   requestId?: string;
 };
 
-export function PasswordForm({
-  loginSettings,
-  loginName,
-  organization,
-  defaultOrganization,
-  requestId,
-}: Props) {
+export function PasswordForm({ loginSettings, loginName, organization, defaultOrganization, requestId }: Props) {
   const { register, handleSubmit, formState } = useForm<Inputs>({
     mode: "onChange",
   });
@@ -118,9 +112,7 @@ export function PasswordForm({
 
   return (
     <>
-      {samlData && (
-        <AutoSubmitForm url={samlData.url} fields={samlData.fields} />
-      )}
+      {samlData && <AutoSubmitForm url={samlData.url} fields={samlData.fields} />}
       <form className="jayn-flow-form w-full">
         <div className={`${error && "animate-shake transform-gpu"}`}>
           <TextInput
@@ -146,14 +138,7 @@ export function PasswordForm({
             </button>
           )}
 
-          {loginName && (
-            <input
-              type="hidden"
-              name="loginName"
-              autoComplete="username"
-              value={loginName}
-            />
-          )}
+          {loginName && <input type="hidden" name="loginName" autoComplete="username" value={loginName} />}
         </div>
 
         {info && (
