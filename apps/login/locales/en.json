@@ -1,7 +1,7 @@
 {
   "common": {
-    "back": "Back",
-    "title": "Login with Zitadel"
+    "back": "back",
+    "title": "Jaynshare"
   },
   "accounts": {
     "title": "Accounts",
@@ -23,15 +23,15 @@
     }
   },
   "loginname": {
-    "title": "Welcome back!",
-    "description": "Enter your login details.",
-    "register": "Register new user",
-    "submit": "Continue",
+    "title": "welcome back",
+    "description": "sign in to create a pool or join your people.",
+    "register": "register",
+    "submit": "continue",
     "labels": {
-      "loginname": "Loginname",
-      "username": "Username",
-      "usernameOrPhoneNumber": "Username or phone number",
-      "usernameOrEmail": "Username or email"
+      "loginname": "email or username",
+      "username": "username",
+      "usernameOrPhoneNumber": "username or phone number",
+      "usernameOrEmail": "email or username"
     },
     "required": {
       "loginName": "This field is required"
@@ -62,12 +62,12 @@
   },
   "password": {
     "verify": {
-      "title": "Password",
-      "description": "Enter your password.",
-      "resetPassword": "Reset Password",
-      "submit": "Continue",
+      "title": "welcome back",
+      "description": "enter your password to continue.",
+      "resetPassword": "forgot your password?",
+      "submit": "continue",
       "labels": {
-        "password": "Password"
+        "password": "password"
       },
       "required": {
         "password": "This field is required"
@@ -323,8 +323,8 @@
       "title": "Missing data",
       "description": "Provide email, first and last name to register."
     },
-    "title": "Register",
-    "description": "Create your Zitadel account.",
+    "title": "register",
+    "description": "your private pool is only a minute away.",
     "noMethodAvailableWarning": "No authentication method available. Please contact your administrator.",
     "selectMethod": "Select the method you would like to authenticate",
     "agreeTo": "To register you must agree to the terms and conditions",

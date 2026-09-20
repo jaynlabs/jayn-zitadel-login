@@ -86,7 +86,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         type="button"
         ref={ref}
-        className={`${getButtonClasses(size, variant, color, actualRoundness, actualAppearance)} ${className}`}
+        className={`${getButtonClasses(size, variant, color, actualRoundness, actualAppearance)} jayn-button ${
+          variant === ButtonVariants.Primary ? "jayn-button-primary" : "jayn-button-secondary"
+        } ${className}`}
         {...props}
       >
         {children}

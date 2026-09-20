@@ -9,8 +9,8 @@ export const SignInWithGoogle = forwardRef<HTMLButtonElement, SignInWithIdentity
     const { children, name, ...restProps } = props;
 
     return (
-      <BaseButton {...restProps} ref={ref}>
-        <div className="flex h-12 w-12 items-center justify-center">
+      <BaseButton {...restProps} ref={ref} className="jayn-icon-only-idp" aria-label={name || "google"}>
+        <div className="jayn-idp-icon flex h-12 w-12 items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" id="Capa_1" viewBox="0 0 150 150">
             <style>
               {
@@ -46,7 +46,9 @@ export const SignInWithGoogle = forwardRef<HTMLButtonElement, SignInWithIdentity
         {children ? (
           children
         ) : (
-          <span className="ml-4">{name ? name : <Translated i18nKey="signInWithGoogle" namespace="idp" />}</span>
+          <span className="jayn-idp-label ml-4">
+            {name ? name : <Translated i18nKey="signInWithGoogle" namespace="idp" />}
+          </span>
         )}
       </BaseButton>
     );

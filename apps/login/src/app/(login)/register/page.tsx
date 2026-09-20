@@ -37,14 +37,23 @@ export default async function Page(props: { searchParams: Promise<Record<string 
     }
   }
 
-  const legal = await getLegalAndSupportSettings({ serviceConfig, organization });
-  const passwordComplexitySettings = await getPasswordComplexitySettings({ serviceConfig, organization });
+  const legal = await getLegalAndSupportSettings({
+    serviceConfig,
+    organization,
+  });
+  const passwordComplexitySettings = await getPasswordComplexitySettings({
+    serviceConfig,
+    organization,
+  });
 
   const branding = await getBrandingSettings({ serviceConfig, organization });
 
   const loginSettings = await getLoginSettings({ serviceConfig, organization });
 
-  const identityProviders = await getActiveIdentityProviders({ serviceConfig, orgId: organization }).then((resp) => {
+  const identityProviders = await getActiveIdentityProviders({
+    serviceConfig,
+    orgId: organization,
+  }).then((resp) => {
     return resp.identityProviders.filter((idp) => {
       return idp.options?.isAutoCreation || idp.options?.isCreationAllowed; // check if IDP allows to create account automatically or manual creation is allowed
     });
@@ -85,12 +94,8 @@ export default async function Page(props: { searchParams: Promise<Record<string 
   return (
     <DynamicTheme branding={branding}>
       <div className="flex flex-col space-y-4">
-        <h1>
-          <Translated i18nKey="title" namespace="register" />
-        </h1>
-        <p className="ztdl-p">
-          <Translated i18nKey="description" namespace="register" />
-        </p>
+        <h1>register</h1>
+        <p className="ztdl-p">your private pool is only a minute away.</p>
       </div>
 
       <div className="w-full">
@@ -114,13 +119,13 @@ export default async function Page(props: { searchParams: Promise<Record<string 
         )}
 
         {loginSettings?.allowExternalIdp && !!identityProviders.length && (
-          <>
+          <div className="jayn-register-idps">
             <SignInWithIdp
               identityProviders={identityProviders}
               requestId={requestId}
               organization={organization}
             ></SignInWithIdp>
-          </>
+          </div>
         )}
       </div>
     </DynamicTheme>

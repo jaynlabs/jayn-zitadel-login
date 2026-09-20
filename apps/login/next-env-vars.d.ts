@@ -17,6 +17,12 @@ declare namespace NodeJS {
     ZITADEL_API_URL: string;
 
     /**
+     * Optional: ZITADEL instance host used for API routing when the Login UI is
+     * served from a separate public domain.
+     */
+    ZITADEL_INSTANCE_HOST?: string;
+
+    /**
      * The service account token
      * If ZITADEL_SERVICE_USER_TOKEN is set, its value is used.
      * If ZITADEL_SERVICE_USER_TOKEN is not set but ZITADEL_SERVICE_USER_TOKEN_FILE is set, the application blocks until the file is created.
@@ -48,7 +54,7 @@ declare namespace NodeJS {
     /**
      * The base path the app is served from, e.g. /ui/v2/login
      */
-    NEXT_PUBLIC_BASE_PATH: string;
+    NEXT_PUBLIC_BASE_PATH?: string;
 
     /**
      * Optional: The application name shown in the login and invite emails

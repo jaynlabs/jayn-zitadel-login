@@ -61,7 +61,10 @@ export function RegisterForm({
   const [loading, setLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState<AuthenticationMethod>(methods[0]);
   const [error, setError] = useState<string>("");
-  const [samlData, setSamlData] = useState<{ url: string; fields: Record<string, string> } | null>(null);
+  const [samlData, setSamlData] = useState<{
+    url: string;
+    fields: Record<string, string>;
+  } | null>(null);
 
   const router = useRouter();
 
@@ -116,7 +119,7 @@ export function RegisterForm({
   return (
     <>
       {samlData && <AutoSubmitForm url={samlData.url} fields={samlData.fields} />}
-      <form className="w-full">
+      <form className="jayn-flow-form w-full">
         <div className="mb-4 grid grid-cols-2 gap-4">
           <div className="">
             <TextInput
@@ -184,7 +187,7 @@ export function RegisterForm({
           </div>
         )}
 
-        <div className="mt-8 flex w-full flex-row items-center justify-between">
+        <div className="jayn-form-actions mt-8 flex w-full flex-row items-center justify-between">
           <BackButton data-testid="back-button" />
           <Button
             type="submit"
@@ -201,7 +204,7 @@ export function RegisterForm({
             data-testid="submit-button"
           >
             {loading && <Spinner className="mr-2 h-5 w-5" />}
-            <Translated i18nKey="submit" namespace="register" />
+            register
           </Button>
         </div>
       </form>

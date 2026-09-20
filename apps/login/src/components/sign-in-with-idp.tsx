@@ -74,7 +74,7 @@ export function SignInWithIdp({
   };
 
   return (
-    <div className="flex w-full flex-col space-y-2 text-sm">
+    <div className="jayn-idp-grid flex w-full flex-col space-y-2 text-sm">
       {state?.samlData && <AutoSubmitForm url={state.samlData.url} fields={state.samlData.fields} />}
       {showLabel && (
         <p className="ztdl-p text-center">
