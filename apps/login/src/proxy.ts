@@ -12,6 +12,13 @@ export const config = {
 };
 
 export async function proxy(request: NextRequest) {
+  // A direct visit to the standalone login host should return to the main site.
+  // Authentication requests enter through /login, so this does not affect the
+  // share.jayn.app -> login.jayn.app -> share.jayn.app flow.
+  if (request.nextUrl.hostname === "login.jayn.app" && request.nextUrl.pathname === "/") {
+    return NextResponse.redirect("https://jayn.app");
+  }
+
   // Add the original URL as a header to all requests
   const requestHeaders = new Headers(request.headers);
 
